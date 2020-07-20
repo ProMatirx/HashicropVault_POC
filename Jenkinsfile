@@ -11,13 +11,15 @@ node
     }
         stage('Build IMAGE')
         {
-            sh "echo $WORKSPACE"
+		 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[envVar: 'user', vaultKey: 'pass']]]]){
+            sh "docker login -u $user -p $pass"
+			sh "echo $WORKSPACE"
             sh "docker --version"
             sh "docker build -t image-$BUILD_NUMBER ."
 			sh "docker tag image-$BUILD_NUMBER muralidevops18/dummy:$BUILD_NUMBER "
             //sh "docker run -itd --name $JOB_NAME-$BUILD_NUMBER -P Image-$BUILD_NUMBER"
 			sh "docker push muralidevops18/dummy:$BUILD_NUMBER"
-
+         }
         }
 }
 
