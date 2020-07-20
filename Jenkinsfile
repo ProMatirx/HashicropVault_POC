@@ -13,6 +13,8 @@ node
 	{
 	    sh "echo $WORKSPACE"
 		sh "docker --version"
+            sh "docker build -t Image-$BUILD_NUMBER ."
+            sh "docker run -itd --name $JOB_NAME-$BUILD_NUMBER -P Image-$BUILD_NUMBER"
 	
 	}
 	
