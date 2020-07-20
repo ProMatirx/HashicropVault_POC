@@ -6,7 +6,7 @@ node
      withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Github', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]]) 
 	 {
   
-       sh "git clone https://${username}:'${password}'@github.com/ProMatirx/HashicropVault_POC.git"
+       sh "/usr/bin/git clone https://${username}:'${password}'@github.com/ProMatirx/HashicropVault_POC.git"
 	  
 	  }   
 
