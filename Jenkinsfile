@@ -2,7 +2,7 @@ node
 {
     stage('Git CheckOut')
     {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ProMatirx/HashicropVault_POC.git']]])  
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitCred', url: 'https://github.com/ProMatirx/HashicropVault_POC.git']]])
     }
 
     stage('Maven Build')
