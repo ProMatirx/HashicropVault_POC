@@ -11,10 +11,11 @@ node
     }
         stage('Build IMAGE')
         {
-		 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[envVar: 'username', vaultKey: 'password']]]])
+		 
+		 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]])
 		 {
           
-		  sh 'docker login -u$username -p$password'
+		    sh "docker login -u $username -p $password"
 			sh "echo $WORKSPACE"
             sh "docker --version"
             sh "docker build -t image-$BUILD_NUMBER ."
