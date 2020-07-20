@@ -5,7 +5,7 @@ node
         //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ProMatirx/HashicropVault_POC.git']]])
      withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Github', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]]) {
        // some block
-       sh 'git clone https://github.com/ProMatirx/HashicropVault_POC.git'      
+       sh 'git clone https://${username}:'${password}'@github.com/ProMatirx/HashicropVault_POC.git'      
 	  
 	  }   
 
