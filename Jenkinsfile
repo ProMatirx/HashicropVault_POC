@@ -16,12 +16,11 @@ node
 		 {
           
 		    sh "docker login -u $username -p $password"
-			sh "echo $WORKSPACE"
-            sh "docker --version"
-            sh "docker build -t image-$BUILD_NUMBER ."
-			sh "docker tag image-$BUILD_NUMBER muralidevops18/dummy:$BUILD_NUMBER "
-            //sh "docker run -itd --name $JOB_NAME-$BUILD_NUMBER -P Image-$BUILD_NUMBER"
-			sh "docker push muralidevops18/dummy:$BUILD_NUMBER"
+		    sh "echo $WORKSPACE"
+                    sh "docker --version"
+                    sh "docker build -t image-$BUILD_NUMBER ."
+		    sh "docker tag image-$BUILD_NUMBER muralidevops18/dummy:$BUILD_NUMBER "
+		    sh "docker push muralidevops18/dummy:$BUILD_NUMBER"
          }
         }
 }
