@@ -12,7 +12,7 @@ node
         stage('Build IMAGE')
         {
 		 
-	 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://18.235.248.236:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]])
+	 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http:/4.207.222.190:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]])
 		 {
           
 		    sh "docker login -u $username -p $password"
