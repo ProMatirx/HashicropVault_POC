@@ -8,13 +8,14 @@ node
     stage('Maven Build')
     {
         sh 'mvn package'
+        sh 'cp webapp/target/webapp.war .'
     }
         stage('Build IMAGE')
         {
 		 
 	 withVault(configuration: [timeout: 60, vaultCredentialId: 'HashiCrop_Vault', vaultUrl: 'http://34.207.222.190:8200'], vaultSecrets: [[path: 'secrets/Dockerhub', secretValues: [[vaultKey: 'username'], [vaultKey: 'password']]]])
 		 {
-          
+                     
 		    sh "docker login -u $username -p $password"
 		    sh "echo $WORKSPACE"
                     sh "docker --version"
