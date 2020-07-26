@@ -20,14 +20,18 @@
     <module>server</module>
     <module>webapp</module>
   </modules>
-
-  <distributionManagement>
-    <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-    </site>
-  </distributionManagement>
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>ip-172-31-62-219-releases</name>
+        <url>http://52.91.168.108:8081/artifactory/WebAppArtifactory</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>ip-172-31-62-219-snapshots</name>
+        <url>http://52.91.168.108:8081/artifactory/WebAppArtifactory</url>
+    </snapshotRepository>
+</distributionManagement>
 
   <build>
     <plugins>
