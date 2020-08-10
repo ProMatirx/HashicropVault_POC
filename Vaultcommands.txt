@@ -1,0 +1,38 @@
+snap install vault
+export VAULT_ADDR=http://107.23.208.220:8200
+vault status
+curl --header "X-Vault-Token: a" http://107.23.208.220:8200/v1/sys/mounts
+snap install jq
+curl --header "X-Vault-Token: s.pwVC5h9x1e34RHTma269d7lt" http://107.23.208.220:8200/v1/sys/mounts | jq
+curl --header "X-Vault-Token: s.pwVC5h9x1e34RHTma269d7lt" --request POST --data '{ "type": "kv" }' http://107.23.208.220:8200/v1/sys/mounts/kv-v1
+
+Openssl Cert
+
+openssl req -x509 -sha256 -nodes -newkey rsa:2048 -keyout selfsigned.key -out cert.pem
+
+
+
+curl --header "X-Vault-Token:$VAULT_TOKEN" --data @newsecretpayload.json http://107.23.208.220:8200/v1/kv/data
+
+curl --header "X-Vault-Token:s.pwVC5h9x1e34RHTma269d7lt" --request GET --data newsecretpayload.json http://107.23.208.220:8200/v1/myengine/byhand/
+
+
+
+vault secrets list -detailed
+
+vault secrets enable -path="kv-v1" kv
+
+vault kv put kv-v1/eng/apikey/Google key=AAaaBBccDDeeOTXzSMT1234BB_Z8JzG7JkSVxI
+
+vault kv get kv-v1/eng/apikey/Google
+
+vault kv put kv-v1/prod/cert/mysql cert=@cert.pem
+
+
+vault kv get -field=key kv-v1/eng/apikey/Google
+vault kv get -field=cert kv-v1/prod/cert/mysql
+
+
+
+vault kv get -filed=key kv-sec/openssl/secrets/pem
+vault kv get -filed=self kv-sec/openssl/selfsigned/cert
